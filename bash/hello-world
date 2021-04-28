@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#src https://www.taniarascia.com/how-to-create-and-use-bash-scripts/
+
+#say hello kiefer
+echo "Hello, world. I am Kiefer."
+echo Just a regular String, I\'m using an escape character
+echo 'if you want to stay warm in this cold environment "bundle" up your "quotes"'$'\n'and put \$ before newline chars inside strings.
+
+#it is better though to use printf
+#1) Literal newline in an assignment.
+FOO="hello
+world"
+#2) Command Substitution.
+BAR=$(printf "hello\nworld\n") #Alternative; note final newline is deleted like in C
+printf '%s\n' "$FOO"
+printf '%s\n' "$BAR"
+
+#Variables
+who='Kiefer'
+you='World'
+age='30'
+echo I\'m $who, Hello $you
+#note: no spaces between such as who = 'kiefer' < DO NOT DO THIS
+echo 'cant use single quotes for variable interpolation ok $who'
+echo "sry i meant $who"
+
+#Parameter expansion
+echo "Hello ${who}! this is parameter expansion"
+
+#Shell execution
+echo "Hello, username: $(whoami)!"
+
+#User input
+#echo 'who are you?'
+#read who
+echo "Hello, $who"
+
+#operators
+#	NUMS 	STRINGS	MEANING
+#	-eq		==		Equal
+#	-ne		!=		Not equal
+#	-gt		>		Greater than
+#	-ge		>=		Greater than or equal
+#	-lt		<		Less than
+#	-le		<=		Less than or equal
+
+#Conditions
+#echo 'How old are you?'
+#read age
+if [ $age -gt 19 ]
+	 then
+	 	 echo 'You are of legal drinking age'
+	 else
+		  echo 'You are too young to drink'
+fi
+
+#Loops <for, while, until>
+files=/Users/kieferaland/Desktop/*
+for file in $files
+	 do
+		  echo $(basename $file)
+	 done
+
+#Arrays
+beatles=('John' 'Paul' 'George' 'Ringo')
+echo ${beatles[3]}
